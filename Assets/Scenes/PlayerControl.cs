@@ -2,19 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// using Input = UnityEngine.Windows.Input;
-
 public class PlayerControl : MonoBehaviour
 {
-    // Start is called before the first frame update
     private float speed = 1;
-    //private Transform transform;
     void Start()
     {
         //transform = GetComponent<Transform>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         var absSpeed = 10;
