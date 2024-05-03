@@ -221,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9087685093954437717, guid: 3507922ecd11b0048aa89536162d18ec, type: 3}
       propertyPath: Artefacts.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9087685093954437717, guid: 3507922ecd11b0048aa89536162d18ec, type: 3}
       propertyPath: Artefacts.Array.data[0]

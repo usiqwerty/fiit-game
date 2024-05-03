@@ -4,9 +4,10 @@ namespace Scenes
 {
     public enum ArtefactName
     {
-        Caltulator,
+        Calculator,
         Differential,
     }
+
     public class Artefact : MonoBehaviour
     {
         public ArtefactName type;
