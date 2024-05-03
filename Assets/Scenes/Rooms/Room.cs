@@ -20,10 +20,7 @@ public class Room : MonoBehaviour
     {
         foreach (var artefact in Artefacts)
         {
-            if (!artefact.spawnOnStart)
-            {
-                Destroy(artefact.gameObject);
-            }
+            artefact.gameObject.SetActive(artefact.spawnOnStart);
         }
     }
     void Update()
