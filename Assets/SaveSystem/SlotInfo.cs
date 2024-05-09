@@ -5,11 +5,11 @@ using UnityEngine;
 public class SlotInfo
 {
     /// <summary>Название слота сохранения.</summary>
-    public string SlotName { get; set; }
+    public string SlotName;
     /// <summary>Время последнего сохранения</summary>
-    public DateTime LastSaveTime { get; set; }
+    public DateTime LastSaveTime;
     /// <summary>Сцена, на которой игрок находится.</summary>
-    public string PlayerScene { get; set; }
+    public string PlayerScene;
     /// <summary>Позиция в сцене, на которой игрок находится.</summary>
-    public Vector2 PlayerPosition { get; set; }
+    public Vector2 PlayerPosition;
 }

@@ -81,9 +81,9 @@ public static class SaveSystem
     }
 
     private static string[] LoadKeys()
-        => JsonUtility.FromJson<string[]>(File.ReadAllText(_path + keysFileName));
+        => JsonUtility.FromJson<KeysInfo>(File.ReadAllText(_path + keysFileName)).Keys;
 
     private static void SaveKeys(string[] keys)
-        => File.WriteAllText(_path + keysFileName, JsonUtility.ToJson(keys));
+        => File.WriteAllText(_path + keysFileName, JsonUtility.ToJson(new KeysInfo { Keys = keys }));
 
 }

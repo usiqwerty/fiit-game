@@ -42,6 +42,7 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(info.PlayerScene);
         var player = Instantiate(PlayerPrefab);
+        player.name = "Player";
         player.GetComponent<Controller>().Initialize(info.PlayerScene, info.PlayerPosition);
         DontDestroyOnLoad(player);
     }
