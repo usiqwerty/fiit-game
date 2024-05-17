@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
@@ -10,6 +11,8 @@ public class Controller : MonoBehaviour
 
     private DoorScript _targetDoor;
     private bool _isDoorEnabled;
+
+    private float _prevDropTime;
 
     /// <summary>Скорость движения персонажа.</summary>
     public float Speed = 10.0f;
@@ -39,6 +42,15 @@ public class Controller : MonoBehaviour
             CurrentScene = _targetDoor.SceneName;
             gameObject.transform.position = _targetDoor.TargetPlayerPosition;
         }
+        else if (Input.GetKey(KeyCode.Q) && KeySystem.Count > 0)
+        {
+            if (Time.time - _prevDropTime > 0.1)
+            {
+                _prevDropTime = Time.time;
+                var pos = transform.position;
+                KeySystem.DropLastKey(pos.x, pos.y);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -50,7 +62,17 @@ public class Controller : MonoBehaviour
             vertivalSpeed *= 0.7f;
             horizontalSpeed *= 0.7f;
         }
+
         _body.velocity = new Vector2(horizontalSpeed, vertivalSpeed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Artefact"))
+        {
+            var artefact = other.gameObject.GetComponent<ArtefactScript>();
+            artefact.OnGrab();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -60,13 +82,6 @@ public class Controller : MonoBehaviour
             _targetDoor = collision.GetComponent<DoorScript>();
             _isDoorEnabled = KeySystem.ContainsKeys(_targetDoor.RequiredKeys);
             return;
-        }
-        if (collision.CompareTag("Artefact"))
-        {
-            var artefact = collision.GetComponent<ArtefactScript>();
-            KeySystem.AddKey(artefact.KeyName);
-            //TODO: анимация взятия артефакта
-            Destroy(artefact.gameObject);
         }
     }
 
