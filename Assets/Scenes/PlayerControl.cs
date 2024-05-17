@@ -6,18 +6,20 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    private float speed = 1;
+    private const float Speed = 10;
     private List<Artefact> _artefacts;
-
+    private float _prevDropTime;
     void Start()
     {
+        _prevDropTime = Time.time;
         _artefacts = new List<Artefact>();
     }
 
     private void GrabArtefact(GameObject artefactObject)
     {
-        _artefacts.Add(artefactObject.GetComponent<Artefact>());
-        artefactObject.SetActive(false);
+        var art = artefactObject.GetComponent<Artefact>();
+        _artefacts.Add(art);
+        art.OnGrab();
         print($"Grabbed artefact {_artefacts[^1].type}, {_artefacts.Count}");
     }
 
@@ -25,9 +27,8 @@ public class PlayerControl : MonoBehaviour
     {
         _artefacts.Remove(artefact);
         var pos = transform.position;
-        artefact.transform.position = new Vector2(pos.x + 2, pos.y + 2);
-        artefact.gameObject.SetActive(true);
-        
+        // artefact.velocity = new Vector2(0.1f, 0.1f);
+        artefact.OnDrop(pos.x, pos.y);
         
     }
 
@@ -35,27 +36,30 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Artefact"))
         {
+            // if (other.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude==0)
             GrabArtefact(other.gameObject);
         }
     }
 
     void Update()
     {
-        var absSpeed = 10;
         var newspeed = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.UpArrow))
-            newspeed.y = absSpeed;
+            newspeed.y = Speed;
         if (Input.GetKey(KeyCode.DownArrow))
-            newspeed.y = -absSpeed;
+            newspeed.y = -Speed;
         if (Input.GetKey(KeyCode.LeftArrow))
-            newspeed.x = -absSpeed;
+            newspeed.x = -Speed;
         if (Input.GetKey(KeyCode.RightArrow))
-            newspeed.x = absSpeed;
+            newspeed.x = Speed;
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && _artefacts.Count > 0)
         {
-            if (_artefacts.Count>0)
+            if (Time.time - _prevDropTime > 0.1)
+            {
+                _prevDropTime = Time.time;
                 DropArtefact(_artefacts[^1]);
+            }
         }
         
         var old = transform.position;
