@@ -74,3 +74,6 @@ crashlytics-build.properties
 !*.obj
 
 /.idea
+/Packages
+*.vsconfig
+/UpgradeLog.htm
