@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Artefact : MonoBehaviour
 {
-    /// <summary>Ключ, соответствующий этому артефакту.</summary>
-    public string KeyName;
+    public string Name;
     private const float DropSpeed = 5f;
     private Rigidbody2D _rb;
 
     void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        if (KeySystem.ContainsKey(KeyName))
+        if (ArtefactStorage.ContainsKey(Name))
             Destroy(gameObject);
     }
     
     public void OnGrab()
     {
-        KeySystem.GrabArtefact(this);
+        ArtefactStorage.GrabArtefact(this);
         gameObject.SetActive(false);
         _rb.velocity = Vector2.zero;
     }

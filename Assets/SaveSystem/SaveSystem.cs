@@ -50,7 +50,7 @@ public static class SaveSystem
         _path = $"{Application.persistentDataPath}/slot{slotNumber}/";
         CurrentSlotNumber = slotNumber;
         CurrentSlotName = info.SlotName;
-        KeySystem.Load(LoadKeys());
+        ArtefactStorage.Load(LoadKeys());
         return info;
     }
 
@@ -77,7 +77,7 @@ public static class SaveSystem
             PlayerPosition = playerPosition
         };
         File.WriteAllText(_path + infoFileName, JsonUtility.ToJson(info));
-        SaveKeys(KeySystem.Save());
+        SaveKeys(ArtefactStorage.Save());
     }
 
     private static string[] LoadKeys()

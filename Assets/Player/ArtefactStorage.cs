@@ -5,10 +5,10 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public static class KeySystem
+public static class ArtefactStorage
 {
     private readonly static List<string> _keys = new();
-    public readonly static List<Artefact> _artefacts = new();
+    public readonly static List<Artefact> Artefacts = new();
     
     
     public static void Load(string[] keys)
@@ -21,17 +21,17 @@ public static class KeySystem
     {
         MonoBehaviour.print("drop last");
         var artefactKey = _keys[^1];
-        var artefact = _artefacts.First(art => art.KeyName == artefactKey);
+        var artefact = Artefacts.First(art => art.Name == artefactKey);
         _keys.Remove(artefactKey);
-        _artefacts.Remove(artefact);
+        Artefacts.Remove(artefact);
         artefact.OnDrop(x, y);
     }
 
     public static void GrabArtefact(Artefact artefact)
     {
-        AddKey(artefact.KeyName);
-        _artefacts.Add(artefact);
-        MonoBehaviour.print($"grabbed {artefact.KeyName}");
+        AddKey(artefact.Name);
+        Artefacts.Add(artefact);
+        MonoBehaviour.print($"grabbed {artefact.Name}");
     }
     public static string[] Save() => _keys.ToArray();
     public static int Count => _keys.Count; 

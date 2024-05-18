@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
     public float speed = 10.0f;
-    
+    public string CurrentScene { get; private set; }
+
+
     private Rigidbody2D _body;
     private float _horizontal;
     private float _vertical;
@@ -15,9 +18,7 @@ public class Controller : MonoBehaviour
     private bool _isDoorEnabled;
 
     private float _prevDropTime;
-    
 
-    public string CurrentScene { get; private set; }
 
     public void Initialize(string scene, Vector2 position)
     {
@@ -42,16 +43,16 @@ public class Controller : MonoBehaviour
             CurrentScene = _targetDoor.SceneName;
             gameObject.transform.position = _targetDoor.TargetPlayerPosition;
         }
-        else if (Input.GetKey(KeyCode.Q) && KeySystem.Count > 0)
+        else if (Input.GetKey(KeyCode.Q) && ArtefactStorage.Count > 0)
         {
-            if (Time.time - _prevDropTime > 0.1)
-            {
-                _prevDropTime = Time.time;
-                var pos = transform.position;
-                KeySystem.DropLastKey(pos.x, pos.y);
-            }
+            if (!(Time.time - _prevDropTime > 0.1)) return;
+            
+            _prevDropTime = Time.time;
+            var pos = transform.position;
+            ArtefactStorage.DropLastKey(pos.x, pos.y);
         }
     }
+
     //TODO: почему два апдейта
     void FixedUpdate()
     {
@@ -77,15 +78,15 @@ public class Controller : MonoBehaviour
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
 
-            foreach (var artefact in KeySystem._artefacts)
+            if (ArtefactStorage.Artefacts.Any(artefact => enemy.TryDie(artefact)))
+            { }
+            else
             {
-                if (enemy.TryDie(artefact))
-                    return;
+                Die();
             }
-            
-            Die();
         }
     }
+
 
     private void Die()
     {
@@ -97,7 +98,7 @@ public class Controller : MonoBehaviour
         if (collision.CompareTag("Door"))
         {
             _targetDoor = collision.GetComponent<DoorScript>();
-            _isDoorEnabled = KeySystem.ContainsKeys(_targetDoor.RequiredKeys);
+            _isDoorEnabled = ArtefactStorage.ContainsKeys(_targetDoor.RequiredKeys);
             return;
         }
     }

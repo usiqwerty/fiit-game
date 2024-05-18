@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
             var pos = _rb.position;
             award.GetComponent<Artefact>().OnDrop(pos.x, pos.y);
         }
-
-        Destroy(this);
+        
+        Destroy(this.gameObject);
     }
 }
