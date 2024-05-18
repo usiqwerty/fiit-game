@@ -8,7 +8,7 @@ using UnityEngine;
 public static class KeySystem
 {
     private readonly static List<string> _keys = new();
-    private readonly static List<ArtefactScript> _artefacts = new();
+    public readonly static List<Artefact> _artefacts = new();
     
     
     public static void Load(string[] keys)
@@ -27,7 +27,7 @@ public static class KeySystem
         artefact.OnDrop(x, y);
     }
 
-    public static void GrabArtefact(ArtefactScript artefact)
+    public static void GrabArtefact(Artefact artefact)
     {
         AddKey(artefact.KeyName);
         _artefacts.Add(artefact);

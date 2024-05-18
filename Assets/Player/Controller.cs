@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
+    public float speed = 10.0f;
+    
     private Rigidbody2D _body;
-
     private float _horizontal;
     private float _vertical;
 
@@ -13,9 +15,7 @@ public class Controller : MonoBehaviour
     private bool _isDoorEnabled;
 
     private float _prevDropTime;
-
-    /// <summary>Скорость движения персонажа.</summary>
-    public float Speed = 10.0f;
+    
 
     public string CurrentScene { get; private set; }
 
@@ -52,11 +52,11 @@ public class Controller : MonoBehaviour
             }
         }
     }
-
+    //TODO: почему два апдейта
     void FixedUpdate()
     {
-        var vertivalSpeed = _vertical * Speed;
-        var horizontalSpeed = _horizontal * Speed;
+        var vertivalSpeed = _vertical * speed;
+        var horizontalSpeed = _horizontal * speed;
         if (_horizontal != 0 && _vertical != 0)
         {
             vertivalSpeed *= 0.7f;
@@ -70,9 +70,26 @@ public class Controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Artefact"))
         {
-            var artefact = other.gameObject.GetComponent<ArtefactScript>();
+            var artefact = other.gameObject.GetComponent<Artefact>();
             artefact.OnGrab();
         }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            var enemy = other.gameObject.GetComponent<Enemy>();
+
+            foreach (var artefact in KeySystem._artefacts)
+            {
+                if (enemy.TryDie(artefact))
+                    return;
+            }
+            
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        throw new NotImplementedException();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -97,6 +114,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    //TODO: этого не должно быть здесь
     void OnGUI()
     {
         if (_targetDoor != null)
