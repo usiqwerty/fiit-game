@@ -66,6 +66,7 @@ public class Controller : MonoBehaviour
 
         _body.velocity = new Vector2(horizontalSpeed, vertivalSpeed);
     }
+     
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -79,9 +80,13 @@ public class Controller : MonoBehaviour
             var enemy = other.gameObject.GetComponent<Enemy>();
 
             if (ArtefactStorage.Artefacts.Any(artefact => enemy.TryDie(artefact)))
-            { }
+            {
+                //killed enemy
+            }
             else
             {
+                print(ArtefactStorage.Artefacts);
+                print(enemy);
                 Die();
             }
         }

@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
+        if (GameProgress.EnemiesKilled.Contains(Name))
+            Destroy(gameObject);
     }
 
     void Update()
@@ -26,22 +28,24 @@ public class Enemy : MonoBehaviour
 
     public bool TryDie(Artefact artefact)
     {
-        if (!Weaknesses.Contains(artefact)) return false;
-        
+        if (!Weaknesses.Any(wkns => wkns.Name == artefact.Name)) return false;
+
         Die();
         return true;
-
     }
 
     private void Die()
     {
         foreach (var award in DroppableAward)
         {
-            Instantiate(award);
             var pos = _rb.position;
-            award.GetComponent<Artefact>().OnDrop(pos.x, pos.y);
+            
+            Instantiate(award.gameObject);
+            var artefact = award.GetComponent<Artefact>();
+            artefact.OnDrop(pos.x, pos.y);
         }
-        
-        Destroy(this.gameObject);
+
+        Destroy(gameObject);
+        GameProgress.EnemiesKilled.Add(Name);
     }
 }
