@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
             var pos = _rb.position;
             
             Instantiate(award.gameObject);
+            // DontDestroyOnLoad(award.gameObject);
             var artefact = award.GetComponent<Artefact>();
             artefact.OnDrop(pos.x, pos.y);
         }

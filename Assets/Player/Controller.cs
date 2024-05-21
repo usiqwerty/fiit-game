@@ -39,6 +39,11 @@ public class Controller : MonoBehaviour
         if (_isDoorEnabled && Input.GetKey(KeyCode.E))
         {
             DontDestroyOnLoad(gameObject);
+            // foreach (var artefact in ArtefactStorage.Artefacts)
+            // {
+            //     DontDestroyOnLoad(artefact);
+            //     artefact.gameObject.SetActive(false);
+            // }
             SceneManager.LoadScene(_targetDoor.SceneName);
             CurrentScene = _targetDoor.SceneName;
             gameObject.transform.position = _targetDoor.TargetPlayerPosition;
