@@ -133,11 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.054325
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.28761
+      value: 9.47
       objectReference: {fileID: 0}
     - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -171,9 +171,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2736536970214383334, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736536970214383334, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5225217533689198040, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       propertyPath: m_Name
-      value: Shark
+      value: Shark with meat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225217533689198040, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: Speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       propertyPath: Weaknesses.Array.size
@@ -269,6 +285,83 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28618795e49622644af795bb07152595, type: 3}
+--- !u!1001 &1737590508
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225217533689198040, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: m_Name
+      value: Shark (empty)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: Speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: Weaknesses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: Weaknesses.Array.data[0]
+      value: 
+      objectReference: {fileID: 3698727820437719763, guid: 812ed05ac5d744e44aab0869b9d2f997, type: 3}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: DroppableAward.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: DroppableAward.Array.data[0]
+      value: 
+      objectReference: {fileID: 2292244898634385141, guid: c8b9b02ff64ffec42a5b7d98a2a71769, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
 --- !u!1001 &1751936693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,11 +376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973171556124871808, guid: 812ed05ac5d744e44aab0869b9d2f997, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.23
+      value: -14.04
       objectReference: {fileID: 0}
     - target: {fileID: 1973171556124871808, guid: 812ed05ac5d744e44aab0869b9d2f997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.35
+      value: 9.17
       objectReference: {fileID: 0}
     - target: {fileID: 1973171556124871808, guid: 812ed05ac5d744e44aab0869b9d2f997, type: 3}
       propertyPath: m_LocalPosition.z
@@ -430,4 +523,5 @@ SceneRoots:
   - {fileID: 1480222858}
   - {fileID: 4825347879441541257}
   - {fileID: 1155673212}
+  - {fileID: 1737590508}
   - {fileID: 1751936693}
