@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weasel : MonoBehaviour
@@ -9,9 +6,10 @@ public class Weasel : MonoBehaviour
     public Artefact Award;
     public float Speed;
     
-    private int collectedVectors;
+    private int _collectedVectors;
     private GameObject _player;
     private Rigidbody2D _rb;
+    
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -19,8 +17,7 @@ public class Weasel : MonoBehaviour
         
         //TODO: если убит, то не спавнить
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         var path = _player.transform.position - _rb.transform.position;
@@ -32,12 +29,13 @@ public class Weasel : MonoBehaviour
         if (other.gameObject.CompareTag("EnemyArtefact"))
         {
             Destroy(other.gameObject);
-            collectedVectors++;
-            print($"{collectedVectors} of {NeededVectors}");
-            if (collectedVectors == NeededVectors)
+            _collectedVectors++;
+            
+            if (_collectedVectors == NeededVectors)
             {
                 var pos = transform.position;
-                Award.OnDrop(pos.x, pos.y);
+                var clone = Instantiate(Award.gameObject);
+                clone.GetComponent<Artefact>().OnDrop(pos.x, pos.y);
                 Die();
             }
         }
@@ -45,6 +43,7 @@ public class Weasel : MonoBehaviour
 
     private void Die()
     {
+        //TODO: анимация?
         Destroy(gameObject);
     }
 }
