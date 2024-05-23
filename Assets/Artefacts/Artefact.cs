@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Artefact : MonoBehaviour
@@ -10,12 +11,16 @@ public class Artefact : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _rb = gameObject.GetComponent<Rigidbody2D>();
+        //артефакт изначально лежит в комнате
         if (ArtefactStorage.ContainsKey(Name))
             Destroy(gameObject);
     }
-
+    private void Awake()
+    {
+        //артефакт создаётся в процессе игры
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _rb = gameObject.GetComponent<Rigidbody2D>();
+    }
     public void OnGrab()
     {
         ArtefactStorage.GrabArtefact(this);
@@ -30,14 +35,8 @@ public class Artefact : MonoBehaviour
     /// <param name="y">координата игрока</param>
     public void OnDrop(float x, float y)
     {
-        if (_rb==null)
-        {
-            _player = GameObject.FindGameObjectWithTag("Player");
-            _rb = gameObject.GetComponent<Rigidbody2D>();
-        }
-        transform.position = new Vector2(x + 1, y + 1);
-        gameObject.SetActive(true);
-        _rb.velocity = new Vector3(DropSpeed, DropSpeed, 0);
+        transform.position = new Vector3(x + 1, y + 1, 0);
+        _rb.velocity = new Vector2(DropSpeed, DropSpeed);
     }
 
     void OnGUI()

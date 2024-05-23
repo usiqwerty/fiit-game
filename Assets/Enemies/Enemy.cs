@@ -29,15 +29,12 @@ public class Enemy : MonoBehaviour
             _rb.velocity = Speed * path.normalized;
         }
         else
-        {
             _rb.velocity = Vector2.zero;
-        }
     }
 
     public bool TryDie(Artefact artefact)
     {
         if (!Weaknesses.Any(wkns => wkns.Name == artefact.Name)) return false;
-
         Die();
         return true;
     }
@@ -53,10 +50,9 @@ public class Enemy : MonoBehaviour
     {
         foreach (var award in DroppableAward)
         {
-            var pos = _rb.position;
-            Instantiate(award.gameObject);
-            // DontDestroyOnLoad(award.gameObject);
-            var artefact = award.GetComponent<Artefact>();
+            var pos = transform.position;
+            var clone = Instantiate(award.gameObject);
+            var artefact = clone.GetComponent<Artefact>();
             artefact.OnDrop(pos.x, pos.y);
         }
     }
