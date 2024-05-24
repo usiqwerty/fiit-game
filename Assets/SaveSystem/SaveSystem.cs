@@ -80,10 +80,15 @@ public static class SaveSystem
         SaveKeys(ArtefactStorage.Save());
     }
 
+    public static T LoadLevelState<T>(string levelName)
+        => JsonUtility.FromJson<T>(File.ReadAllText(_path + $"{levelName}.json"));
+
+    public static void SaveLevelState<T>(string levelName, T state)
+        => File.WriteAllText(_path + $"{levelName}.json", JsonUtility.ToJson(state));
+
     private static string[] LoadKeys()
         => JsonUtility.FromJson<KeysInfo>(File.ReadAllText(_path + keysFileName)).Keys;
 
     private static void SaveKeys(string[] keys)
         => File.WriteAllText(_path + keysFileName, JsonUtility.ToJson(new KeysInfo { Keys = keys }));
-
 }
