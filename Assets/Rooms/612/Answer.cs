@@ -1,41 +1,45 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Answer : MonoBehaviour
 {
     public bool isCorrect;
     private GameObject _player;
+    private MessageBoxEntry _messageBox;
     private Enemy _kitten;
     private bool _answered;
+
+    private bool _isShow = false;
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _kitten = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
+        _messageBox = GameObject.Find("MessageBox").GetComponent<MessageBox>().CreateEntry();
+    }
+
+    private void OnDestroy()
+    {
+        _messageBox.Disable();
     }
 
     void Update()
     {
-        if ((_player.transform.position - transform.position).magnitude < 2)
+        if (_isShow != ((_player.transform.position - transform.position).sqrMagnitude < 2))
         {
-            if (Input.GetKey(KeyCode.X) && !_answered)
-            {
-                _answered = true;
-                if (isCorrect)
-                    _kitten.DropAllAwards();
-                else
-                    _kitten.FollowPlayer = true;
-            }
+            _isShow = !_isShow;
+            if (_isShow)
+                _messageBox.Activate("", "Нажмите E, чтобы ответить", Color.green);
+            else
+                _messageBox.Disable();
         }
-    }
 
-    private void OnGUI()
-    {
-        if ((_player.transform.position - transform.position).magnitude < 2)
+        if (_isShow && Input.GetKey(KeyCode.E) && !_answered)
         {
-            GUI.Label(new Rect(100, 160, 200, 30), "Нажмите X, чтобы ответить");
+            _answered = true;
+            if (isCorrect)
+                _kitten.DropAllAwards();
+            else
+                _kitten.FollowPlayer = true;
         }
     }
 }

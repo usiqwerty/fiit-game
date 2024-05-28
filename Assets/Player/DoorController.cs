@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
-    private MessageBox _messageBox;
+    private MessageBoxEntry _messageBox;
 
     private DoorScript _targetDoor;
     private bool _isDoorEnabled;
@@ -12,7 +12,7 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-        _messageBox = GameObject.Find("MessageBox").GetComponent<MessageBox>();
+        _messageBox = GameObject.Find("MessageBox").GetComponent<MessageBox>().CreateEntry();
     }
 
     void Update()
@@ -38,9 +38,10 @@ public class DoorController : MonoBehaviour
         {
             _targetDoor = collision.GetComponent<DoorScript>();
             _isDoorEnabled = ArtefactStorage.ContainsKeys(_targetDoor.RequiredKeys);
-            _messageBox.Active(_targetDoor.Text, _isDoorEnabled
-                ? "Нажмите Е, чтобы войти"
-                : _targetDoor.Warning);
+            if (_isDoorEnabled)
+                _messageBox.Activate(_targetDoor.Text, "Нажмите Е, чтобы войти", Color.green);
+            else
+                _messageBox.Activate(_targetDoor.Text, _targetDoor.Warning, Color.red);
             return;
         }
     }
