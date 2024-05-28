@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +10,11 @@ public class Enemy : MonoBehaviour
     public Artefact[] DroppableAward;
     public Artefact[] Weaknesses;
     public bool FollowPlayer;
+
+    /// <summary>Точки по которым патрулирует враг</summary>
+    public Vector2[] PatrolPoints;
+    private int _currentPatrolPoint;
+
     private GameObject _player;
     private Rigidbody2D _rb;
 
@@ -26,6 +31,13 @@ public class Enemy : MonoBehaviour
         if (FollowPlayer)
         {
             var path = _player.transform.position - _rb.transform.position;
+            _rb.velocity = Speed * path.normalized;
+        }
+        else if (PatrolPoints.Length > 0)
+        {
+            var path = PatrolPoints[_currentPatrolPoint] - (Vector2)_rb.transform.position;
+            if (path.magnitude < Speed / 100)
+                _currentPatrolPoint = (_currentPatrolPoint + 1) % PatrolPoints.Length;
             _rb.velocity = Speed * path.normalized;
         }
         else
