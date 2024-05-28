@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public static class ArtefactStorage
@@ -10,11 +7,26 @@ public static class ArtefactStorage
     private readonly static List<string> _keys = new();
     public readonly static List<Artefact> Artefacts = new();
     
-    
-    public static void Load(string[] keys)
+    static ArtefactStorage()
     {
+        SaveSystem.SlotLoaded += Load;
+        SaveSystem.SavingSlot += Save;
+        Load();
+    }
+    
+    public static void Load()
+    {
+        if (SaveSystem.CurrentSlotNumber == -1)
+            return;
         _keys.Clear();
-        _keys.AddRange(keys);
+        var state = SaveSystem.LoadState<ArrayState<string>>("artefacts");
+        if (state != null)
+            _keys.AddRange(state.Array);
+    }
+
+    public static void Save()
+    {
+        SaveSystem.SaveState("artefacts", new ArrayState<string>(_keys.ToArray()));
     }
 
     public static void DropLastKey(float x, float y)
@@ -33,7 +45,7 @@ public static class ArtefactStorage
         Artefacts.Add(artefact);
         MonoBehaviour.print($"grabbed {artefact.Name}");
     }
-    public static string[] Save() => _keys.ToArray();
+
     public static int Count => _keys.Count; 
     public static void AddKey(string key) => _keys.Add(key);
 

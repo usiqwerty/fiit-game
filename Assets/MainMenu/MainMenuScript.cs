@@ -20,30 +20,26 @@ public class MainMenuScript : MonoBehaviour
 
     private void LoadSlots()
     {
-        var slots = SaveSystem.GetSlotInfos();
+        var slots = SaveSystem.GetExistingSlots();
         for (var i = 0; i < slots.Length; i++)
-            if (slots[i] != null)
-                EditSlot(i, slots[i].SlotName, true);
+            if (slots[i])
+                EditSlot(i, $"Слот {i + 1}", true);
     }
 
-    public void NewGame(int number)
+    public void NewGame(int number) => StartGame(number);
+
+    public void LoadSlot(int number) => StartGame(number);
+
+    private void StartGame(int slotNumber)
     {
-        var info = SaveSystem.CreateAndLoadSlot(number, $"Слот {number}");
-        StartGame(info);
+        SaveSystem.LoadSlot(slotNumber);
+        SceneManager.LoadSceneAsync("Hall/Scene").completed += CreatePlayer;
     }
 
-    public void LoadSlot(int number)
+    private void CreatePlayer(AsyncOperation _)
     {
-        var info = SaveSystem.LoadSlot(number);
-        StartGame(info);
-    }
-
-    private void StartGame(SlotInfo info)
-    {
-        SceneManager.LoadScene(info.PlayerScene);
         var player = Instantiate(PlayerPrefab);
         player.name = "Player";
-        player.GetComponent<Controller>().Initialize(info.PlayerScene, info.PlayerPosition);
         DontDestroyOnLoad(player);
     }
 
