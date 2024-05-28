@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rooms/625/Scene.unity
     guid: 6e8f6aae3b977d24a9b2db8a87b20962
+  - enabled: 1
+    path: Assets/Rooms/Hackerdom/Scene.unity
+    guid: 72cd5150ec3cca74bae007b6d269484b
   m_configObjects: {}

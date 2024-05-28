@@ -1515,20 +1515,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: Text
-      value: "\u041A\u0430\u043A\u043E\u0439-\u0442\u043E \u0442\u0435\u043A\u0441\u0442
-        \u0443 \u0430\u0443\u0434\u0438\u0442\u043E\u0440\u0438\u0438 602"
+      value: HACKERDOM ???...
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: Warning
-      value: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0430\u0440\u0442\u0435\u0444\u0430\u043A\u0442!"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: SceneName
-      value: Rooms/602/Scene
+      value: Rooms/Hackerdom/Scene
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: RequiredKeys.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: RequiredKeys.Array.data[0]
@@ -1536,11 +1535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 8.17
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.5
+      value: -4.63
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.z
