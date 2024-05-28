@@ -105,17 +105,16 @@ public class Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Door"))
+        if (collision.CompareTag("Door") || collision.CompareTag("DeanDoor"))
         {
             _targetDoor = collision.GetComponent<DoorScript>();
             _isDoorEnabled = ArtefactStorage.ContainsKeys(_targetDoor.RequiredKeys);
-            return;
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Door"))
+        if (collision.CompareTag("Door") || collision.CompareTag("DeanDoor"))
         {
             if (_targetDoor == collision.GetComponent<DoorScript>())
             {

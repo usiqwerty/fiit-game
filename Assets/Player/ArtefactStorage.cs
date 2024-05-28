@@ -9,7 +9,7 @@ public static class ArtefactStorage
 {
     private readonly static List<string> _keys = new();
     public readonly static List<Artefact> Artefacts = new();
-    
+    public static string[] Required = new []{"Акулье мясо"};
     
     public static void Load(string[] keys)
     {
