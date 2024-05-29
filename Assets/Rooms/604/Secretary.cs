@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Secretary : MonoBehaviour
@@ -16,13 +13,7 @@ public class Secretary : MonoBehaviour
         _deanDoor.RequiredKeys = ArtefactStorage.Required;
         _player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    void Update()
-    {
-        
-        
-    }
-
+    
     private void OnGUI()
     {
         if ((_player.transform.position - transform.position).magnitude < 3)
