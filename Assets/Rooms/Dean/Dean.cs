@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Rooms.Dean;
 using UnityEngine;
@@ -6,15 +7,19 @@ using UnityEngine;
 public class Dean : MonoBehaviour
 {
     public GameObject answerPrefab;
-
+    private MessageBoxEntry _messageBox;
     private Queue<Question> _questions;
 
     private readonly Vector2 _answerPos1 = new Vector2(-10, 8);
     private readonly Vector2 _answerPosShift = new Vector2(3, 0);
-
+    private GameObject _player;
+    private bool _showText;
+    private Question _currentQuestion;
 
     void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _messageBox = GameObject.Find("MessageBox").GetComponent<MessageBox>().CreateEntry();
         _questions = new Queue<Question>();
         _questions.Enqueue(new Question
         {
@@ -34,16 +39,32 @@ public class Dean : MonoBehaviour
         NextQuestion();
     }
 
+    private void Update()
+    {
+        if (_currentQuestion != null)
+        {
+            if (_showText != (transform.position - _player.transform.position).magnitude < 3)
+            {
+                _showText = !_showText;
+                if (_showText)
+                    _messageBox.Activate(_currentQuestion.Text, "", Color.green);
+                else
+                    _messageBox.Disable();
+            }
+                
+        }
+
+    }
+
     private void NextQuestion()
     {
         foreach (var answer in GameObject.FindGameObjectsWithTag("Answer"))
             Destroy(answer);
         if (_questions.Count == 0)
-        {
             GameOver();
-        }
 
         var question = _questions.Dequeue();
+        _currentQuestion = question;
         var i = 1;
 
         foreach (var (text, correct) in question.Answers)
@@ -65,7 +86,7 @@ public class Dean : MonoBehaviour
         answer.transform.position = transform.position;
         ansConfig.DisplayableText = text;
         ansConfig.isCorrect = isCorrect;
-        ansConfig.onAnswerCallback = NextQuestion;
+        ansConfig.OnAnswerCallback = NextQuestion;
         ansConfig.Move(position);
 
 
