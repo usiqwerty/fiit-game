@@ -35,9 +35,9 @@ public class PauseMenuScript : MonoBehaviour
     public void SaveAndQuit()
     {
         var player = GameObject.Find("Player");
-        if (!player.TryGetComponent<Controller>(out var controller))
+        if (!player.TryGetComponent<Controller>(out var _))
             return;
-        SaveSystem.SaveToCurrentSlot(controller.CurrentScene, player.transform.position);
+        SaveSystem.SaveSlot();
         Destroy(player);
         SceneManager.LoadScene("MainMenu/Scene");
         Time.timeScale = 1;
