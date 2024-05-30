@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Rooms.Dean;
 using UnityEngine;
@@ -10,12 +9,12 @@ public class Dean : MonoBehaviour
 
     private Queue<Question> _questions;
 
-    // private Enemy _enemy;
-    // private GameObject _player;
+    private readonly Vector2 _answerPos1 = new Vector2(-10, 8);
+    private readonly Vector2 _answerPosShift = new Vector2(3, 0);
+
+
     void Start()
     {
-        // _enemy = GetComponent<Enemy>();
-        // _player = GameObject.FindGameObjectWithTag("Player");
         _questions = new Queue<Question>();
         _questions.Enqueue(new Question
         {
@@ -30,31 +29,46 @@ public class Dean : MonoBehaviour
         _questions.Enqueue(new Question
         {
             Text = "Понравилось учиться на матмехе?",
-            Answers = new[] {("Нет", false), ("Да", true) }
+            Answers = new[] { ("Нет", false), ("Да", true) }
         });
         NextQuestion();
     }
 
-    public void NextQuestion()
+    private void NextQuestion()
     {
+        foreach (var answer in GameObject.FindGameObjectsWithTag("Answer"))
+            Destroy(answer);
         if (_questions.Count == 0)
-            return;
+        {
+            GameOver();
+        }
+
         var question = _questions.Dequeue();
         var i = 1;
+
         foreach (var (text, correct) in question.Answers)
             GenerateAnswer(i++, text, correct);
     }
 
+    private void GameOver()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void GenerateAnswer(int number, string text, bool isCorrect)
     {
+        var position = _answerPos1 + (number - 1) * _answerPosShift;
+        print(position);
         if (number < 1 || number > 3) return;
         var answer = Instantiate(answerPrefab);
         var ansConfig = answer.GetComponent<Answer>();
+        answer.transform.position = transform.position;
         ansConfig.DisplayableText = text;
         ansConfig.isCorrect = isCorrect;
         ansConfig.onAnswerCallback = NextQuestion;
+        ansConfig.Move(position);
 
-        answer.transform.position = transform.position;
+
         var spriteRenderer = answer.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Resources.Load<Sprite>($"Sprite Assets/ans{number}");
     }

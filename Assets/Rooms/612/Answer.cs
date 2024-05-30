@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Answer : MonoBehaviour
@@ -11,7 +9,10 @@ public class Answer : MonoBehaviour
     private GameObject _player;
     private Enemy _kitten;
     private bool _answered;
-    
+
+    private Vector2? _targetPosition;
+    private const float _speed = 10f;
+
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -20,6 +21,14 @@ public class Answer : MonoBehaviour
 
     void Update()
     {
+        if (_targetPosition != null)
+        {
+            transform.position =
+                Vector2.MoveTowards(transform.position, _targetPosition.Value, _speed * Time.deltaTime);
+            if (transform.position == _targetPosition)
+                _targetPosition = null;
+        }
+
         if ((_player.transform.position - transform.position).magnitude < 2)
         {
             if (Input.GetKey(KeyCode.X) && !_answered)
@@ -40,9 +49,14 @@ public class Answer : MonoBehaviour
     {
         if ((_player.transform.position - transform.position).magnitude < 2)
         {
-            if (DisplayableText!=null)
+            if (DisplayableText != null)
                 GUI.Label(new Rect(100, 130, 200, 30), DisplayableText);
             GUI.Label(new Rect(100, 160, 200, 30), "Нажмите X, чтобы ответить");
         }
+    }
+
+    public void Move(Vector2 targetPosition)
+    {
+        _targetPosition = targetPosition;
     }
 }
