@@ -272,7 +272,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: Text
-      value: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F"
+      value: "\u0414\u0435\u043A\u0430\u043D"
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: Warning
