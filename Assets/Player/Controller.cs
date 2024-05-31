@@ -22,18 +22,6 @@ public class Controller : MonoBehaviour
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
-        // if (_isDoorEnabled && Input.GetKey(KeyCode.E))
-        // {
-        //     DontDestroyOnLoad(gameObject);
-        //     // foreach (var artefact in ArtefactStorage.Artefacts)
-        //     // {
-        //     //     DontDestroyOnLoad(artefact);
-        //     //     artefact.gameObject.SetActive(false);
-        //     // }
-        //     SceneManager.LoadScene(_targetDoor.SceneName);
-        //     CurrentScene = _targetDoor.SceneName;
-        //     gameObject.transform.position = _targetDoor.TargetPlayerPosition;
-        // }
         if (Input.GetKey(KeyCode.Q) && ArtefactStorage.Count > 0)
         {
             if (!(Time.time - _prevDropTime > 0.1)) return;
@@ -45,7 +33,6 @@ public class Controller : MonoBehaviour
         }
     }
 
-    //TODO: почему два апдейта
     void FixedUpdate()
     {
         var vertivalSpeed = _vertical * speed;
@@ -87,39 +74,4 @@ public class Controller : MonoBehaviour
     {
         throw new NotImplementedException();
     }
-    //
-    // void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.CompareTag("Door") || collision.CompareTag("DeanDoor"))
-    //     {
-    //         _targetDoor = collision.GetComponent<DoorScript>();
-    //         _isDoorEnabled = ArtefactStorage.ContainsKeys(_targetDoor.RequiredKeys);
-    //     }
-    // }
-    //
-    // void OnTriggerExit2D(Collider2D collision)
-    // {
-    //     if (collision.CompareTag("Door") || collision.CompareTag("DeanDoor"))
-    //     {
-    //         if (_targetDoor == collision.GetComponent<DoorScript>())
-    //         {
-    //             _targetDoor = null;
-    //             _isDoorEnabled = false;
-    //         }
-    //     }
-    // }
-    //
-    // //TODO: этого не должно быть здесь
-    // void OnGUI()
-    // {
-    //     if (_targetDoor != null)
-    //     {
-    //         //TODO: переместить в GUI в юнити
-    //         GUI.Label(new Rect(100, 100, 200, 200), _targetDoor.Text);
-    //         if (_isDoorEnabled)
-    //             GUI.Label(new Rect(100, 130, 200, 200), "Нажмите Е, чтобы войти");
-    //         else
-    //             GUI.Label(new Rect(100, 130, 200, 200), _targetDoor.Warning);
-    //     }
-    // }
 }
