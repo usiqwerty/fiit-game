@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MessageBox : MonoBehaviour
 {
-    private static MessageBox instance;
-
     public GameObject MessageBoxPanel;
     public TextMeshProUGUI MainText;
     public TextMeshProUGUI ActionText;
@@ -15,15 +14,8 @@ public class MessageBox : MonoBehaviour
     private HashSet<MessageBoxEntry> _entries;
     private Dictionary<MessageBoxEntry, State> _activeStates;
 
-    private void Awake()
+    private void Start()
     {
-        if (instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
         _entries = new();
         _activeStates = new();
     }
@@ -43,7 +35,8 @@ public class MessageBox : MonoBehaviour
         var state = new State(mainText, actionText, actionTextColor ?? Color.white);
         SetState(state);
         _activeStates.Add(entry, state);
-        MessageBoxPanel.SetActive(true);
+        if (!MessageBoxPanel.IsDestroyed())
+            MessageBoxPanel.SetActive(true);
     }
 
     public void Disable(MessageBoxEntry entry)
@@ -54,7 +47,7 @@ public class MessageBox : MonoBehaviour
             return;
         if (_activeStates.Any())
             SetState(_activeStates.First().Value);
-        else
+        else if (!MessageBoxPanel.IsDestroyed())
             MessageBoxPanel.SetActive(false);
     }
 

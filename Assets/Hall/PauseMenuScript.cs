@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
     private bool _paused;
 
+    public SingletonScript UnloadableCanvas;
+    public GameObject EventSystem;
     public GameObject PauseMenuUI;
 
     void Update()
@@ -34,12 +37,14 @@ public class PauseMenuScript : MonoBehaviour
 
     public void SaveAndQuit()
     {
-        var player = GameObject.Find("Player");
-        if (!player.TryGetComponent<Controller>(out var _))
-            return;
         SaveSystem.SaveSlot();
-        Destroy(player);
-        SceneManager.LoadScene("MainMenu/Scene");
-        Time.timeScale = 1;
+        Destroy(EventSystem);
+        SceneManager.LoadSceneAsync("MainMenu/Scene").completed += _ =>
+        {
+            var player = GameObject.Find("Player");
+            Destroy(player);
+            UnloadableCanvas.DestroySingleton();
+            Time.timeScale = 1;
+        };
     }
 }

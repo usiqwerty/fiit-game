@@ -72,6 +72,6 @@ public class Controller : MonoBehaviour
 
     private void Die()
     {
-        throw new NotImplementedException();
+        DeathScreenScript.Die();
     }
 }
