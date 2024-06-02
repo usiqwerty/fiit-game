@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
@@ -9,10 +8,18 @@ public class PauseMenuScript : MonoBehaviour
     public SingletonScript UnloadableCanvas;
     public GameObject EventSystem;
     public GameObject PauseMenuUI;
+    public GameObject ExitButton;
 
-    void Update()
+    public static bool Enabled { get; set; }
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        Enabled = true;
+    }
+
+    private void Update()
+    {
+        if (Enabled && Input.GetKeyDown(KeyCode.Escape))
         {
             if (_paused)
                 Resume();
@@ -30,9 +37,10 @@ public class PauseMenuScript : MonoBehaviour
 
     public void Pause()
     {
-        PauseMenuUI.SetActive(true);
-        Time.timeScale = 0;
         _paused = true;
+        Time.timeScale = 0;
+        PauseMenuUI.SetActive(true);
+        ExitButton.SetActive(SceneManager.GetActiveScene().path.Contains("Hall"));
     }
 
     public void SaveAndQuit()

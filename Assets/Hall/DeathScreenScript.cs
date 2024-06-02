@@ -16,6 +16,7 @@ public class DeathScreenScript : MonoBehaviour
 
     public static void Die()
     {
+        PauseMenuScript.Enabled = false;
         instance.DeathScreenPanel.SetActive(true);
         Time.timeScale = 0;
     }
