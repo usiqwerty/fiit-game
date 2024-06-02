@@ -171,4 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079e45c4c513dc4a87b6fd1089702db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: CSharpPaper
