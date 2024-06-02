@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   m_FlipX: 0
@@ -143,4 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482d1fae85521d14fb0f570ad0b2e4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomId: 0
+  SceneName: 
+  Text: 
+  Warning: 
+  RequiredKeys: []
+  TargetPlayerPosition: {x: 0, y: 0}
