@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GridScript : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GridScript : MonoBehaviour
     public GameObject CellPrefab;
 
     public Vector2Int[] PassState;
+
+    public GameObject CompleteObject;
 
     public bool EditEnabled { get; private set; }
 
@@ -52,5 +55,6 @@ public class GridScript : MonoBehaviour
         EditEnabled = false;
         foreach (var cell in _cells)
             cell.SetComplete();
+        CompleteObject.SetActive(true);
     }
 }

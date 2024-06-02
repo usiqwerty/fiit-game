@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,23 +7,30 @@ public static class ArtefactStorage
 {
     private readonly static List<string> _keys = new();
     public readonly static List<Artefact> Artefacts = new();
-    
+
+    public static IReadOnlyList<string> Keys => _keys;
+
+    public static event Action<string> ArtefactAdded;
+    public static event Action<string> ArtefactRemoved;
+
     static ArtefactStorage()
     {
         SaveSystem.SlotLoaded += Load;
         SaveSystem.SavingSlot += Save;
         Load();
     }
+
     public static string[] Required = new []{"Акулье мясо"};
     
     public static void Load()
     {
         if (SaveSystem.CurrentSlotNumber == -1)
             return;
-        _keys.Clear();
+        ClearKeys();
         var state = SaveSystem.LoadState<ArrayState<string>>("artefacts");
         if (state != null)
-            _keys.AddRange(state.Array);
+            foreach (var key in state.Array)
+                AddKey(key);
     }
 
     public static void Save()
@@ -35,7 +43,7 @@ public static class ArtefactStorage
         MonoBehaviour.print("drop last");
         var artefactKey = _keys[^1];
         var artefact = Artefacts.First(art => art.Name == artefactKey);
-        _keys.Remove(artefactKey);
+        RemoveKey(artefactKey);
         Artefacts.Remove(artefact);
         artefact.OnDrop(x, y);
     }
@@ -47,8 +55,27 @@ public static class ArtefactStorage
         MonoBehaviour.print($"grabbed {artefact.Name}");
     }
 
-    public static int Count => _keys.Count; 
-    public static void AddKey(string key) => _keys.Add(key);
+    public static int Count => _keys.Count;
+    public static void AddKey(string key)
+    {
+        if (_keys.Contains(key))
+            return;
+        _keys.Add(key);
+        ArtefactAdded?.Invoke(key);
+    }
+
+    public static void RemoveKey(string key)
+    {
+        if (_keys.Remove(key))
+            ArtefactRemoved?.Invoke(key);
+    }
+
+    private static void ClearKeys()
+    {
+        foreach (var key in _keys)
+            ArtefactRemoved?.Invoke(key);
+        _keys.Clear();
+    }
 
     public static bool ContainsKey(string key) => _keys.Contains(key);
     public static bool ContainsKeys(string[] keys) => keys?.All(k => _keys.Contains(k)) ?? true;

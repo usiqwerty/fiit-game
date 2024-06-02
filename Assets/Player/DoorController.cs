@@ -17,7 +17,7 @@ public class DoorController : MonoBehaviour
 
     void Update()
     {
-        if (_isDoorEnabled && Input.GetKey(KeyCode.E))
+        if (_isDoorEnabled && Input.GetKey(KeyCode.E) && Time.timeScale != 0)
         {
             if (Time.time - _prevActionTime < 0.2)
                 return;

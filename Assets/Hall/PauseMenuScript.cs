@@ -5,11 +5,21 @@ public class PauseMenuScript : MonoBehaviour
 {
     private bool _paused;
 
+    public SingletonScript UnloadableCanvas;
+    public GameObject EventSystem;
     public GameObject PauseMenuUI;
+    public GameObject ExitButton;
 
-    void Update()
+    public static bool Enabled { get; set; }
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        Enabled = true;
+    }
+
+    private void Update()
+    {
+        if (Enabled && Input.GetKeyDown(KeyCode.Escape))
         {
             if (_paused)
                 Resume();
@@ -27,19 +37,22 @@ public class PauseMenuScript : MonoBehaviour
 
     public void Pause()
     {
-        PauseMenuUI.SetActive(true);
-        Time.timeScale = 0;
         _paused = true;
+        Time.timeScale = 0;
+        PauseMenuUI.SetActive(true);
+        ExitButton.SetActive(SceneManager.GetActiveScene().path.Contains("Hall"));
     }
 
     public void SaveAndQuit()
     {
-        var player = GameObject.Find("Player");
-        if (!player.TryGetComponent<Controller>(out var _))
-            return;
         SaveSystem.SaveSlot();
-        Destroy(player);
-        SceneManager.LoadScene("MainMenu/Scene");
-        Time.timeScale = 1;
+        Destroy(EventSystem);
+        SceneManager.LoadSceneAsync("MainMenu/Scene").completed += _ =>
+        {
+            var player = GameObject.Find("Player");
+            Destroy(player);
+            UnloadableCanvas.DestroySingleton();
+            Time.timeScale = 1;
+        };
     }
 }
