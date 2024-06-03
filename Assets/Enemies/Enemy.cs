@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,7 +11,8 @@ public class Enemy : MonoBehaviour
     public Artefact[] DroppableAward;
     public Artefact[] Weaknesses;
     public bool FollowPlayer;
-
+    public bool Peaceful;
+    
     /// <summary>Точки по которым патрулирует враг</summary>
     public Vector2[] PatrolPoints;
     private int _currentPatrolPoint;
@@ -28,6 +30,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (FollowPlayer)
+            Peaceful = false;
+        
         if (FollowPlayer)
         {
             var path = _player.transform.position - _rb.transform.position;

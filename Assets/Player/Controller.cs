@@ -56,17 +56,12 @@ public class Controller : MonoBehaviour
         else if (other.gameObject.CompareTag("Enemy"))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
-
-            if (ArtefactStorage.Artefacts.Any(artefact => enemy.TryDie(artefact)))
-            {
-                //killed enemy
-            }
-            else
-            {
-                print(ArtefactStorage.Artefacts);
-                print(enemy);
-                Die();
-            }
+            var killedEnemy = ArtefactStorage.Artefacts.Any(artefact => enemy.TryDie(artefact));
+            if (killedEnemy || enemy.Peaceful) return;
+            
+            print(ArtefactStorage.Artefacts);
+            print(enemy);
+            Die();
         }
     }
 
