@@ -226,6 +226,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5225217533689198040, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 125956783}
+    - targetCorrespondingSourceObject: {fileID: 5225217533689198040, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 125956785}
   m_SourcePrefab: {fileID: 100100000, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
 --- !u!1 &125956782 stripped
 GameObject:
@@ -246,12 +249,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NeededVectors: 2
   Award: {fileID: 3661631404170881994, guid: 6b5d18bdb7efffa45b734ff0985e460a, type: 3}
-  Speed: 7
 --- !u!4 &125956784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1205045824640831883, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
   m_PrefabInstance: {fileID: 125956781}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &125956785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125956782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827fc5701380def42a7cc86ce732be9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: "\u0425\u043E\u0440\u0451\u043A"
+  Speed: 7
+  DroppableAward: []
+  Weaknesses: []
+  FollowPlayer: 1
+  Peaceful: 0
+  PatrolPoints: []
 --- !u!1001 &660385332
 PrefabInstance:
   m_ObjectHideFlags: 0

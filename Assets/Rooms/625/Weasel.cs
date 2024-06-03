@@ -4,26 +4,14 @@ public class Weasel : MonoBehaviour
 {
     public int NeededVectors;
     public Artefact Award;
-    public float Speed;
-    
+
     private int _collectedVectors;
-    private GameObject _player;
-    private Rigidbody2D _rb;
-    
+    private Enemy _enemy;
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _rb = gameObject.GetComponent<Rigidbody2D>();
-        
-        //TODO: если убит, то не спавнить
+        _enemy = gameObject.GetComponent<Enemy>();
     }
     
-    void Update()
-    {
-        var path = _player.transform.position - _rb.transform.position;
-        _rb.velocity = Speed * path.normalized;
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("EnemyArtefact"))
@@ -36,14 +24,9 @@ public class Weasel : MonoBehaviour
                 var pos = transform.position;
                 var clone = Instantiate(Award.gameObject);
                 clone.GetComponent<Artefact>().OnDrop(pos.x, pos.y);
-                Die();
+                _enemy.Die();
             }
         }
     }
-
-    private void Die()
-    {
-        //TODO: анимация?
-        Destroy(gameObject);
-    }
+    
 }

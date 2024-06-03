@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         return true;
     }
 
-    private void Die()
+    public void Die()
     {
         DropAllAwards();
         Destroy(gameObject);
