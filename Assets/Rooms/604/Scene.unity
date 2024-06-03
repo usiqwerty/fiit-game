@@ -3095,11 +3095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: TargetPlayerPosition.x
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: TargetPlayerPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.x
