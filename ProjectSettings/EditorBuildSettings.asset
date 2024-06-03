@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rooms/Dean/Scene.unity
     guid: 4cfbc21faf34b6e4aae5e9746773d838
+  - enabled: 1
+    path: Assets/Rooms/603/Scene.unity
+    guid: 47d425c134e8ea44a84f0d632806e120
+  - enabled: 1
+    path: Assets/Rooms/602/Scene.unity
+    guid: bb98f3609e093fa41af1a2c992ccb82c
   m_configObjects: {}
