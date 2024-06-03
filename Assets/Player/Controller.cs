@@ -57,7 +57,7 @@ public class Controller : MonoBehaviour
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
             var killedEnemy = ArtefactStorage.Artefacts.Any(artefact => enemy.TryDie(artefact));
-            if (killedEnemy || enemy.Peaceful) return;
+            //if (killedEnemy || enemy.Peaceful) return;
             
             print(ArtefactStorage.Artefacts);
             print(enemy);
