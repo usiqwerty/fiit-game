@@ -196,7 +196,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -8085,19 +8085,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: TargetPlayerPosition.x
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: -5568400007112453776, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: TargetPlayerPosition.y
-      value: 0
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.93
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.89
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2735220178572768249, guid: 28618795e49622644af795bb07152595, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8356,7 +8356,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
