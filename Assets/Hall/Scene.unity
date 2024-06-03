@@ -80304,6 +80304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnloadableCanvas: {fileID: 1162118579}
+  Text: {fileID: 1643599562}
   EventSystem: {fileID: 876248751}
   DeathScreenPanel: {fileID: 2135328697}
 --- !u!1 &2049245440

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DeathScreenScript : MonoBehaviour
@@ -6,6 +7,7 @@ public class DeathScreenScript : MonoBehaviour
     private static DeathScreenScript instance;
 
     public SingletonScript UnloadableCanvas;
+    public TextMeshProUGUI Text;
     public GameObject EventSystem;
     public GameObject DeathScreenPanel;
 
@@ -14,9 +16,20 @@ public class DeathScreenScript : MonoBehaviour
         instance = this;
     }
 
+    public static void Win()
+    {
+        PauseMenuScript.Enabled = false;
+        instance.Text.text = "Вы победили!";
+        instance.Text.color = Color.green;
+        instance.DeathScreenPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
     public static void Die()
     {
         PauseMenuScript.Enabled = false;
+        instance.Text.text = "Отчислен!";
+        instance.Text.color = Color.red;
         instance.DeathScreenPanel.SetActive(true);
         Time.timeScale = 0;
     }

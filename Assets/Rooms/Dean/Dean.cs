@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Rooms.Dean;
 using UnityEngine;
@@ -73,7 +72,7 @@ public class Dean : MonoBehaviour
 
     private void GameOver()
     {
-        throw new System.NotImplementedException();
+        DeathScreenScript.Win();
     }
 
     private void GenerateAnswer(int number, string text, bool isCorrect)
