@@ -1024,6 +1024,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2226357787793839616, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 699788679, guid: 219ed48e685362447833aa16e58fe640, type: 3}
     - target: {fileID: 3903512726574476003, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
       propertyPath: m_Name
       value: Secretary
@@ -1067,6 +1071,18 @@ PrefabInstance:
     - target: {fileID: 7787321531736840081, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419162213226633704, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419162213226633704, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419162213226633704, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8419162213226633704, guid: 3b6d7cd8ad9e5f3439c5e2d5d4ff131a, type: 3}
       propertyPath: m_LocalPosition.x
