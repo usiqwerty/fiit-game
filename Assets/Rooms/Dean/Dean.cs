@@ -23,17 +23,17 @@ public class Dean : MonoBehaviour
         _questions = new Queue<Question>();
         _questions.Enqueue(new Question
         {
-            Text = "Как зовут препода?",
-            Answers = new[] { ("Василий", true), ("Николай", false), ("Vfhbz", false) }
+            Text = "Результат скалярного произведения?",
+            Answers = new[] { ("Число", true), ("Вектор", false), ("Пицца", false) }
         });
         _questions.Enqueue(new Question
         {
-            Text = "Как дела?",
-            Answers = new[] { ("Василий", false), ("Николай", false), ("Vfhbz", true) }
+            Text = "Сколько акул было в аквариуме?",
+            Answers = new[] { ("3", false), ("4.5", false), ("2", true) }
         });
         _questions.Enqueue(new Question
         {
-            Text = "Понравилось учиться на матмехе?",
+            Text = "Вам нравится учиться на матмехе?",
             Answers = new[] { ("Нет", false), ("Да", true) }
         });
         NextQuestion();

@@ -4227,6 +4227,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
+      propertyPath: Peaceful
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585753735802183755, guid: 5cce475a5f3599842b51e3b69dad3ba2, type: 3}
       propertyPath: DroppableAward.Array.size
       value: 1
       objectReference: {fileID: 0}
