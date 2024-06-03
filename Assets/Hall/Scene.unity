@@ -75115,6 +75115,14 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 1c4493287e72f6048ba4597446bab167, type: 3}
   - Name: PythonPaper
     Sprite: {fileID: 21300000, guid: f56aa0327f2a0f34188f79286d65494b, type: 3}
+  - Name: "\u0414\u0438\u0444\u0444\u0435\u0440\u0435\u043D\u0446\u0438\u0430\u043B"
+    Sprite: {fileID: 21300000, guid: 60b8a7566857fb24388f9a2eeefda04b, type: 3}
+  - Name: "\u0410\u043A\u0443\u043B\u044C\u0435 \u043C\u044F\u0441\u043E"
+    Sprite: {fileID: 21300000, guid: a592e52011d988e46b3a2c82e1ac05ba, type: 3}
+  - Name: "\u0422\u0440\u0435\u0437\u0443\u0431\u0435\u0446"
+    Sprite: {fileID: 21300000, guid: 84cf68e09d773234ab309993d9b51f01, type: 3}
+  - Name: Number 5
+    Sprite: {fileID: 21300000, guid: 9d57f4ce8668d4743bc2e43151cec4a1, type: 3}
 --- !u!114 &1505939473
 MonoBehaviour:
   m_ObjectHideFlags: 0
