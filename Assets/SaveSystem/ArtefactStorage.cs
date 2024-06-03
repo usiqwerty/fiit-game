@@ -20,7 +20,14 @@ public static class ArtefactStorage
         Load();
     }
 
-    public static string[] Required = new []{"Акулье мясо"};
+    public static string[] Required = new []
+    {
+        "Акулье мясо",
+        "CSharpPaper",
+        "Дифференциал",
+        "Число 5",
+        "Трезубец",
+    };
     
     public static void Load()
     {
