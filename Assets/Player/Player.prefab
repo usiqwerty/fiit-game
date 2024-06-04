@@ -112,6 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  ForwardSprite: {fileID: 1466817287, guid: f2a83bdea67f62242b61bb78dd9dc188, type: 3}
+  LeftSprite: {fileID: -1977235773, guid: f2a83bdea67f62242b61bb78dd9dc188, type: 3}
+  RightSprite: {fileID: -50417039, guid: f2a83bdea67f62242b61bb78dd9dc188, type: 3}
+  BackwardSprite: {fileID: 268682152, guid: f2a83bdea67f62242b61bb78dd9dc188, type: 3}
 --- !u!114 &6943242740890955881
 MonoBehaviour:
   m_ObjectHideFlags: 0

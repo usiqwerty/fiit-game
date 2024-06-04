@@ -5,16 +5,22 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     public float speed = 10.0f;
-
+    public Sprite ForwardSprite;
+    public Sprite LeftSprite;
+    public Sprite RightSprite;
+    public Sprite BackwardSprite;
+    
     private Rigidbody2D _body;
     private float _horizontal;
     private float _vertical;
 
     private float _prevDropTime;
+    private SpriteRenderer _spriteRenderer;
 
     void Start()
     {
         _body = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -22,6 +28,16 @@ public class Controller : MonoBehaviour
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
+        if (_vertical > 0)
+            _spriteRenderer.sprite = ForwardSprite;
+        if (_vertical < 0)
+            _spriteRenderer.sprite = BackwardSprite;
+        
+        if (_horizontal > 0)
+            _spriteRenderer.sprite = RightSprite;
+        if (_horizontal < 0)
+            _spriteRenderer.sprite = LeftSprite;
+        
         if (Input.GetKey(KeyCode.Q) && ArtefactStorage.Count > 0)
         {
             if (!(Time.time - _prevDropTime > 0.1)) return;
